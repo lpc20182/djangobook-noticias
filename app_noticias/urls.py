@@ -11,4 +11,5 @@ urlpatterns = [
     path('contato/sucesso/', views.ContatoSucessoView.as_view(), name='contato_sucesso'),
     path('autores/<int:id>/', views.autor_detalhes, name='autor_detalhes'),
     path('categorias/<slug>/', views.categoria_detalhes, name='categoria_detalhes'),
+    path('resumo/', views.resumo, name='resumo'),
 ]

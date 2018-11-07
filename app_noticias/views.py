@@ -102,3 +102,18 @@ def categoria_detalhes(request, slug):
         })
     except Categoria.DoesNotExist:
         return Http404('Categoria não encontrada')
+
+def resumo(request):
+    try:
+        categoria = Categoria.objects.all()
+        for i in categoria:
+            noticias = Noticia.objects.filter(categoria=i)
+            porcentagem = noticias.count()/Noticia.objects.count()*100
+        
+        return render(request, 'app_noticias/resumo.html', {
+            'categoria': categoria,
+            'noticias': noticias,
+            'porcentagem': porcentagem
+        })
+    except Categoria.DoesNotExist:
+        return Http404('Categoria não encontrada')
