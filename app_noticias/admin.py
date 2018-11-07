@@ -24,6 +24,18 @@ class NoticiaAdmin(admin.ModelAdmin):
     inlines = (FotoDeNoticiaInline,)
     date_hierarchy = 'data_de_publicacao'
     list_filter = ('categoria',)
+    def pertence_ao_grupo_Editores( request, model_admin):
+        if request.user.is_admin:
+            a=readonly_fields = ('categoria',)
+            return a
+
+    def get_queryset(self):
+        return super().get_queryset().filter(categoria='Politica')
+
+
+#qs = model_admin.get_queryset(request)
+#if qs.filter(grupo=date(1980, 1, 1)
+#list_display = ('first_name', 'last_name')
 
 
 @admin.register(MensagemDeContato)
