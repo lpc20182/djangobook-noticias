@@ -55,13 +55,29 @@ class Noticia(models.Model):
         return self.titulo
 
 
-class FotoDeNoticia(models.Model):
-    class Meta:
-        verbose_name = 'Foto de notícia'
-        verbose_name_plural = 'Fotos de notícias'
+# class FotoDeNoticia(models.Model):
+#     class Meta:
+#         verbose_name = 'Foto de notícia'
+#         verbose_name_plural = 'Fotos de notícias'
 
-    noticia = models.ForeignKey(Noticia, on_delete=models.CASCADE, related_name='fotos')
+#     noticia = models.ForeignKey(Noticia, on_delete=models.CASCADE, related_name='fotos')
+#     arquivo = models.FileField()
+
+
+class Fotos(models.Model):
+    class Meta:
+        verbose_name = 'Foto'
+        verbose_name_plural = 'Fotos'
+
+    nome = models.CharField('Nome', max_length=128, help_text='Nome da foto.')
+    data = models.DateField('Data', blank=True, null=True)
+    creditos = models.CharField('Créditos', max_length=128)
+    legenda = models.TextField('Legenda', max_length=512)  
+
     arquivo = models.FileField()
+
+    def __str__(self):
+        return self.nome
 
 
 class MensagemDeContato(models.Model):

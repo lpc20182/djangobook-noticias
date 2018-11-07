@@ -14,14 +14,14 @@ class TagAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('nome',)}
 
 
-class FotoDeNoticiaInline(admin.TabularInline):
-    model = FotoDeNoticia
-    extra = 1
+# class FotoDeNoticiaInline(admin.TabularInline):
+#     model = FotoDeNoticia
+#     extra = 1
 
 
 @admin.register(Noticia)
 class NoticiaAdmin(admin.ModelAdmin):
-    inlines = (FotoDeNoticiaInline,)
+    # inlines = (FotoDeNoticiaInline,)
     date_hierarchy = 'data_de_publicacao'
     list_filter = ('categoria',)
 
@@ -34,6 +34,10 @@ class MensagemDeContatoAdmin(admin.ModelAdmin):
 @admin.register(Categoria)
 class CategoriaAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('nome',)}
+
+@admin.register(Fotos)
+class FotosAdmin(admin.ModelAdmin):
+    pass
 
 
 
