@@ -24,6 +24,7 @@ class NoticiaAdmin(admin.ModelAdmin):
     inlines = (FotoDeNoticiaInline,)
     date_hierarchy = 'data_de_publicacao'
     list_filter = ('categoria',)
+    User._meta.get_fields('<django.db.models.fields.BooleanField: is_active>')
 
 
 @admin.register(MensagemDeContato)
