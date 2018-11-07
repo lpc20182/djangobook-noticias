@@ -4,10 +4,10 @@
 {# <h3>Descrição:</h3> #}
 <p><b>Descrição:</b> <i>{{categoria.descricao}}</i></p>
 
-{% load static %}
-   <img src="{% static "app_noticias/yahoo.png" %}" alt="My image">
+  
 <ul>
    {% for noticia in noticias %}
+   <img src="/media/yahoo.png" alt="Politica">
    
    <li><a href="/noticias/{{noticia.id}}/">{{noticia.titulo}}</a></li>
     {% empty %}
