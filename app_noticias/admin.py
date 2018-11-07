@@ -24,7 +24,9 @@ class NoticiaAdmin(admin.ModelAdmin):
     inlines = (FotoDeNoticiaInline,)
     date_hierarchy = 'data_de_publicacao'
     list_filter = ('categoria',)
-
+    readonly_fields = ('quantidade_de_views',)
+    def get_changeform_initial_data(self, request):
+        return (readonly_fields)
 
 @admin.register(MensagemDeContato)
 class MensagemDeContatoAdmin(admin.ModelAdmin):

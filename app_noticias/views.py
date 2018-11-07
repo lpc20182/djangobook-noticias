@@ -3,6 +3,8 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.views import View
 from django.views.generic import ListView, TemplateView, DetailView, FormView
+from django.utils import timezone
+from .models import *
 
 # Create your views here.
 from app_noticias.forms import ContatoForm
@@ -27,9 +29,19 @@ class NoticiasResumoView(TemplateView):
         return context
 
 
+
 class NoticiaDetalhesView(DetailView):
+
     model = Noticia
     template_name = 'app_noticias/detalhes.html'
+    
+    def get_object(self):
+        #quantidade_de_views
+        obj = super().get_object()
+         # Record the last accessed date
+        obj.quantidade_de_views = obj.quantidade_de_views+1
+        obj.save()
+        return obj
 
 
 class TagDetalhesView(DetailView):
