@@ -35,5 +35,8 @@ class MensagemDeContatoAdmin(admin.ModelAdmin):
 class CategoriaAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('nome',)}
 
-
+@admin.register(Parceiro)
+class ParceiroAdmin(admin.ModelAdmin):
+    pass
+    
 
