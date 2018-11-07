@@ -1,5 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
+#from reportlab.graphics.shapes import Drawing, String
+
 
 # Create your models here.
 
@@ -37,6 +39,20 @@ class Categoria(models.Model):
     def __str__(self):
         return self.nome
 
+class Foto(models.Model):
+    class Meta:
+        verbose_name = 'Foto'
+        verbose_name_plural = 'Fotos'
+
+    arquivo = models.ImageField()
+    data = models.DateField()
+    creditos = models.CharField(max_length=64)
+    legenda = models.TextField(max_length=100)
+    arquivo = models.FileField() 
+
+    def __str__(self):
+        return self.creditos
+
 class Noticia(models.Model):
     class Meta:
         verbose_name = 'Notícia'
@@ -50,6 +66,7 @@ class Noticia(models.Model):
         Pessoa, on_delete=models.SET_NULL, related_name='noticias', blank=True, null=True)
     tags = models.ManyToManyField(Tag)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, null=True, blank=True)
+    fotos = models.ManyToManyField(Foto)
 
     def __str__(self):
         return self.titulo
@@ -60,7 +77,7 @@ class FotoDeNoticia(models.Model):
         verbose_name = 'Foto de notícia'
         verbose_name_plural = 'Fotos de notícias'
 
-    noticia = models.ForeignKey(Noticia, on_delete=models.CASCADE, related_name='fotos')
+    noticia = models.ForeignKey(Noticia, on_delete=models.CASCADE, related_name='foto')
     arquivo = models.FileField()
 
 
@@ -76,3 +93,6 @@ class MensagemDeContato(models.Model):
 
     def __str__(self):
         return self.nome
+
+
+
