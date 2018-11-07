@@ -73,7 +73,8 @@ def noticias_da_tag(request, tag_slug):
 def noticia_detalhes(request, id):
     try:
         n = Noticia.objects.get(pk=id)
-        return render(request, 'app_noticias/detalhes.html', {'noticia': n})
+        i = FotoDeNoticia.objects.filter(noticia=n)[0]
+        return render(request, 'app_noticias/detalhes.html', {'noticia': n, 'imagem': i})
     except Noticia.DoesNotExist:
         return Http404('Notícia não encontrada')
 

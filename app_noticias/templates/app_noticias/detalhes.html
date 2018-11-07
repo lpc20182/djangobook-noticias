@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ noticia.titulo }}</title>
-</head>
-<body>
+{% extends "app_noticias/base.html" %}
+
+{% block titulo %}{{noticia.titulo}}{% endblock titulo %}
+
+{% block conteudo %}
 <h1>{{ noticia.titulo }}</h1>
+<div>
+    <img src="\media\117080_original_5184x3456.jpg" class="img-responsive">
+</div>
 <p>Por <strong>{{ noticia.autor }}</strong> em {{ noticia.data_de_publicacao }}</p>
 <p>Tags:
     {% for tag in noticia.tags.all %}
@@ -15,6 +16,4 @@
 <div>
     {{ noticia.conteudo | linebreaks }}
 </div>
-
-</body>
-</html>
+{% endblock conteudo %}
