@@ -18,6 +18,7 @@ class Pessoa(models.Model):
                                      null=True, blank=True,
                                      )
     email = models.EmailField('E-mail', null=True, blank=True)
+    foto = models.ImageField(null=True, blank=True)
 
     def __str__(self):
         return self.nome

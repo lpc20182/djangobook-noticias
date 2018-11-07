@@ -3,13 +3,54 @@
 {% block titulo %}Página do autor {{autor.nome}}{% endblock titulo %}
 
 {% block conteudo %}
-<h1>Notícias de: {{autor.nome}}</h1>
-<ul>
-    {% for noticia in noticias %}
-    <li><a href="/noticias/{{noticia.id}}/">{{noticia.titulo}}</a></li>
-    {% empty %}
-    <li>O autor não publicou notícias</li>
-    {% endfor %}
-</ul>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <div class="row">
+                <div class="col">
+                    {%if autor.foto%}
+                    <img src="{{autor.foto.url}}">
+                    {%else%}
+                        <li>O autor não possui foto</li>
+                    {%endif%}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <a href="/noticias/{{autor.id}}/">{{autor.nome}}</a><br>
+                    {{autor.email}}
+                </div>
+            </div>
+        </div>
+        <div class="col-8">
+            {%for noticia in noticias%}
+                <div class="row">
+                    <div class="col-4">
+                        {%if noticia.fotos|length > 0%}
+                            foto = fotos[0]
+                            <img src="{{noticia.foto.url}}">
+                        {%else%}
+                            <li>A notícia não possui fotos</li>
+                        {%endif%}
+                    </div>
+                    <div class="col-8">
+                        <a href="/noticias/{{noticia.id}}/">{{noticia.titulo}}</a><br>
+                        <a href="/categorias/{{noticia.categoria.slug}}/">{{noticia.categoria.nome}}</a>
+                    </div>
+                </div>
+            {% empty %}
+                <li>O autor não publicou notícias</li>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 {% endblock conteudo %}
 
+
+    
