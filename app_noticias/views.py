@@ -82,6 +82,7 @@ def autor_detalhes(request, id):
     try:
         pessoa = Pessoa.objects.get(pk=id)
         noticias = Noticia.objects.filter(autor=pessoa)
+        f = FotoDePessoa.objects.filter(noticia=n)[0]
         return render(request, 'app_noticias/autor.html', {
             'autor': pessoa,
             'noticias': noticias

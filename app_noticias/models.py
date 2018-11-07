@@ -23,6 +23,15 @@ class Pessoa(models.Model):
         return self.nome
 
 
+class FotoDePessoa(models.Model):
+    class Meta:
+        verbose_name = 'Foto de pessoa'
+        verbose_name_plural = 'Fotos de pessoas'
+
+    noticia = models.ForeignKey(Pessoa, on_delete=models.CASCADE, related_name='foto')
+    arquivo = models.FileField()
+
+
 class Tag(models.Model):
     nome = models.CharField(max_length=64)
     slug = models.SlugField(max_length=64)
