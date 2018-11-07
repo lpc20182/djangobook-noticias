@@ -33,11 +33,6 @@ class NoticiaAdmin(admin.ModelAdmin):
         return super().get_queryset().filter(categoria='Politica')
 
 
-#qs = model_admin.get_queryset(request)
-#if qs.filter(grupo=date(1980, 1, 1)
-#list_display = ('first_name', 'last_name')
-
-
 @admin.register(MensagemDeContato)
 class MensagemDeContatoAdmin(admin.ModelAdmin):
     readonly_fields = ('data',)
