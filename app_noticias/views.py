@@ -102,3 +102,17 @@ def categoria_detalhes(request, slug):
         })
     except Categoria.DoesNotExist:
         return Http404('Categoria não encontrada')
+
+
+
+def autores(request):
+    try:
+        autores = Pessoa.objects.exclude(nome=None).order_by('-nome')
+        noticias = Noticia.objects.all()
+        return render(request, 'app_noticias/autores.html', {'autores': autores,'noticias': noticias})
+    except autores.DoesNotExist:
+        return Http404('Autores não encontrados')
+
+
+
+        

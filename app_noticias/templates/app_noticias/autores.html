@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ }}</title>
+</head>
+<body>
+<table border="1">
+    {% for autor in autores %}
+        <tr>
+            <td><a href ="{% url 'autor' %}">{ autor.nome }}</a>{</td>
+            <td><a href ="{% url 'autor' %}"></a>{{ autor.foto }}</a></td>
+            <td>{{ noticias.objects.filter(autor=autor)}}</td>
+        </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
+
+
