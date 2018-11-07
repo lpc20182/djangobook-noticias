@@ -32,10 +32,11 @@ class Tag(models.Model):
 
 class Categoria(models.Model):
     nome = models.CharField(max_length=64)
+    descricao = models.TextField("Descrição",max_length=128, null=True, blank=True)
     slug = models.SlugField(max_length=64)
 
     def __str__(self):
-        return self.nome
+        return "{} - {}".format(self.nome, self.descricao)
 
 class Noticia(models.Model):
     class Meta:
