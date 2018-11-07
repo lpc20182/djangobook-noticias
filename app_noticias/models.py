@@ -76,3 +76,17 @@ class MensagemDeContato(models.Model):
 
     def __str__(self):
         return self.nome
+
+class Parceiro(models.Model):
+    class Meta:
+        verbose_name = 'Parceiro'
+        verbose_name_plural = 'Parceiros'
+
+    nome = models.CharField(max_length=128)
+    quantidade_de_cliques = models.IntegerField(default=0)
+    link = models.URLField(max_length=200)
+    imagem = models.ImageField(default=False)
+    ativo = models.BooleanField()
+
+    def __str__(self):
+        return self.nome
