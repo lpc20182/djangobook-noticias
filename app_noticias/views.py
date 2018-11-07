@@ -17,6 +17,11 @@ class HomePageView(ListView):
     def get_queryset(self):
         return Noticia.objects.exclude(data_de_publicacao=None).order_by('-data_de_publicacao')[:5]
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['noticias_recentes'] = Noticia.objects.exclude(data_de_publicacao=None, categoria__nome='Destaque').order_by('-data_de_publicacao')[:5]
+        return context
+
 
 class NoticiasResumoView(TemplateView):
     template_name = 'app_noticias/resumo.html'
