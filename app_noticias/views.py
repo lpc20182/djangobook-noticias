@@ -14,6 +14,11 @@ class HomePageView(ListView):
     context_object_name = 'noticias'
     template_name = 'app_noticias/home.html'
 
+    def get_context_data(self, **kwargs): 
+        context = super().get_context_data(**kwargs)
+        context['parceiros'] = Parceiro.objects.filter(ativo = True)
+        return context
+
     def get_queryset(self):
         return Noticia.objects.exclude(data_de_publicacao=None).order_by('-data_de_publicacao')[:5]
 
@@ -102,3 +107,7 @@ def categoria_detalhes(request, slug):
         })
     except Categoria.DoesNotExist:
         return Http404('Categoria não encontrada')
+
+
+
+    

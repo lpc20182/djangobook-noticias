@@ -1,20 +1,37 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Notícias</title>
 </head>
+
 <body>
 
-<h1>Notícias</h1>
-<h2>Notícias recentes</h2>
-{% for noticia in noticias %}
-<div>
-    <div><a href="{% url "detalhes" noticia.pk %}">{{ noticia.titulo }}</a></div>
-</div>
-{% endfor %}
-<footer>
-    <p>LPC &copy; 2018</p>
-</footer>
+    <h1>Notícias</h1>
+    <h2>Notícias recentes</h2>
+    {% for noticia in noticias %}
+    <div>
+        <div><a href="{% url "detalhes" noticia.pk %}">{{ noticia.titulo }}</a></div>
+    </div>
+    {% endfor %}
+
+    <center>
+        <h3>Lista dos Parceiros</h3>
+    </center>
+
+    {% for p in parceiros %}
+        <p>
+            <a href="#"> 
+                <img src="{{p.imagem.url}}">
+            </a>        
+        </p>
+    {% endfor %}
+
+    <footer>
+        <p>LPC &copy; 2018</p>
+    </footer>
+
 </body>
+
 </html>
