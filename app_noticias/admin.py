@@ -6,9 +6,15 @@ from .models import *
 
 @admin.register(Pessoa)
 class PessoaAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('nome','usuario','email')
 
-
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+        return qs.filter(usuario=request.user)    
+   
+   
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('nome',)}
