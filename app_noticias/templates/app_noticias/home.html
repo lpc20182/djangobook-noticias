@@ -5,7 +5,12 @@
     <title>Notícias</title>
 </head>
 <body>
-
+<h1>Destaque</h1>
+<div>{% load static %}
+    <img src="{% static "/media/imagem.arquivo/" %}"/>
+</div>
+<div><a href="{% url "detalhes" noticia_destaque.pk %}">{{ noticia_destaque.titulo }}</a></div>
+<div>{{ noticia_destaque.resumo }}</div>
 <h1>Notícias</h1>
 <h2>Notícias recentes</h2>
 {% for noticia in noticias %}

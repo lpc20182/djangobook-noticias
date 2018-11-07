@@ -14,8 +14,16 @@ class HomePageView(ListView):
     context_object_name = 'noticias'
     template_name = 'app_noticias/home.html'
 
-    def get_queryset(self):
+    def get_queryset(self): 
         return Noticia.objects.exclude(data_de_publicacao=None).order_by('-data_de_publicacao')[:5]
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        categoria = Categoria.objects.get(nome='Destaque')
+        foto = FotoDeNoticia.objects.filter(noticia=Noticia.objects.filter(categoria=categoria).order_by('-data_de_publicacao')[0])[0]
+        context['noticia_destaque'] = Noticia.objects.filter(categoria=categoria).order_by('-data_de_publicacao')[0]
+        context['imagem'] = foto
+        return context
 
 
 class NoticiasResumoView(TemplateView):
