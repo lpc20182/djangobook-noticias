@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.views import View
 from django.views.generic import ListView, TemplateView, DetailView, FormView
 
-# Create your views here.
+
 from app_noticias.forms import ContatoForm
 from .models import *
 
@@ -15,8 +15,7 @@ class HomePageView(ListView):
     template_name = 'app_noticias/home.html'
 
     def get_queryset(self):
-        return Noticia.objects.exclude(data_de_publicacao=None).order_by('-data_de_publicacao')[:5]
-
+        return Noticia.objects.all().filter(autor=Editores)
 
 class NoticiasResumoView(TemplateView):
     template_name = 'app_noticias/resumo.html'
