@@ -15,7 +15,7 @@ class HomePageView(ListView):
     template_name = 'app_noticias/home.html'
 
     def get_queryset(self):
-        return Noticia.objects.exclude(data_de_publicacao=None).order_by('-data_de_publicacao')[:5]
+        return Noticia.objects.filter(autor=self.request.user).order_by('-data_de_publicacao')[:5]
 
 
 class NoticiasResumoView(TemplateView):
