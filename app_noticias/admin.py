@@ -24,6 +24,7 @@ class NoticiaAdmin(admin.ModelAdmin):
     inlines = (FotoDeNoticiaInline,)
     date_hierarchy = 'data_de_publicacao'
     list_filter = ('categoria',)
+    readonly_fields = ('quantidade_de_views',)
 
 
 @admin.register(MensagemDeContato)

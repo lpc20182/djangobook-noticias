@@ -50,7 +50,7 @@ class Noticia(models.Model):
         Pessoa, on_delete=models.SET_NULL, related_name='noticias', blank=True, null=True)
     tags = models.ManyToManyField(Tag)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, null=True, blank=True)
-
+    quantidade_de_views = models.IntegerField(default=0)
     def __str__(self):
         return self.titulo
 

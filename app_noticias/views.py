@@ -8,7 +8,6 @@ from django.views.generic import ListView, TemplateView, DetailView, FormView
 from app_noticias.forms import ContatoForm
 from .models import *
 
-
 class HomePageView(ListView):
     model = Noticia
     context_object_name = 'noticias'
@@ -27,9 +26,6 @@ class NoticiasResumoView(TemplateView):
         return context
 
 
-class NoticiaDetalhesView(DetailView):
-    model = Noticia
-    template_name = 'app_noticias/detalhes.html'
 
 
 class TagDetalhesView(DetailView):
@@ -102,3 +98,19 @@ def categoria_detalhes(request, slug):
         })
     except Categoria.DoesNotExist:
         return Http404('Categoria não encontrada')
+ 
+
+class NoticiaDetalhesView(DetailView):
+    model = Noticia
+    template_name = 'app_noticias/home.html'
+    def get_object(self):
+        obj = super().get_object()
+        # Record the last accessed date
+        obj.quantidade_de_views = obj.quantidade_de_views + 1
+        obj.save()
+        return obj
+        
+
+def quantidade_de_views(request):
+    noticias_view = Noticia.object.order_by('-quantidade_de_views')[:5]
+    return render(request, 'app_noticias/home.html', {'noticias_view': noticias_view})

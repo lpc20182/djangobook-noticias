@@ -13,6 +13,13 @@
     <div><a href="{% url "detalhes" noticia.pk %}">{{ noticia.titulo }}</a></div>
 </div>
 {% endfor %}
+
+{% for noticia in noticias_view %}
+<div>
+    <div><a href="{% url "detalhes" noticia.pk %}">{{ noticia.titulo }} </a></div>
+    <h1>{{noticia.quantidade_de_views}}</h1>
+</div>
+{% endfor %}
 <footer>
     <p>LPC &copy; 2018</p>
 </footer>
