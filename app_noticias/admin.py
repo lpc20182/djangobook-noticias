@@ -22,6 +22,7 @@ class FotoDeNoticiaInline(admin.TabularInline):
 @admin.register(Noticia)
 class NoticiaAdmin(admin.ModelAdmin):
     inlines = (FotoDeNoticiaInline,)
+    readonly_fields = ('data_de_publicacao',)
     date_hierarchy = 'data_de_publicacao'
     list_filter = ('categoria',)
 

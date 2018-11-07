@@ -45,7 +45,7 @@ class Noticia(models.Model):
     titulo = models.CharField('Título', max_length=128)
     conteudo = models.TextField('Conteúdo')
     data_de_publicacao = models.DateTimeField(
-        'Data de publicação', blank=True, null=True)
+        'Data de publicação', auto_now_add=True)
     autor = models.ForeignKey(
         Pessoa, on_delete=models.SET_NULL, related_name='noticias', blank=True, null=True)
     tags = models.ManyToManyField(Tag)
